@@ -34,7 +34,7 @@ export function getRedisClient(): ReturnType<typeof createClient> {
     
     redisClient = createClient({ url });
     redisClient.on("error", (err) => 
-      console.error("[redis-rate-limit] Redis error:", err)
+      console.error("[@yaliach/redis-rate-limit] Redis error:", err)
     );
     redisClient.connect();
   }
@@ -72,7 +72,7 @@ export async function rateLimitCheck(
     };
   } catch (err) {
     // fail open if redis fails
-    console.error("[redis-rate-limit] Redis error, allowing request:", err);
+    console.error("[@yaliach/redis-rate-limit] Redis error, allowing request:", err);
     return {
       allowed: true,
       remaining: limit,
