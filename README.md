@@ -1,4 +1,4 @@
-# redis-rate-limit
+# Redis Rate Limit
 
 Granular rate limiting with sliding window for any Node.js application.
 ## Features
@@ -13,13 +13,13 @@ Granular rate limiting with sliding window for any Node.js application.
 ## Installation
 
 ```bash
-npm install redis-rate-limit redis
+npm install @yaliach/redis-rate-limit redis
 ```
 
 ## Quick Start
 
 ```typescript
-import { rateLimit } from 'redis-rate-limit';
+import { rateLimit } from '@yaliach/redis-rate-limit';
 
 export async function POST(req: Request) {
   // Rate limit by user ID
@@ -215,7 +215,7 @@ X-RateLimit-Reset: 2024-03-31T12:00:00.000Z
 
 ```typescript
 // app/api/protected/route.ts
-import { rateLimit } from 'redis-rate-limit';
+import { rateLimit } from '@yaliach/redis-rate-limit';
 import { auth } from '@/lib/auth';
 
 export async function POST(req: Request) {
@@ -236,7 +236,7 @@ export async function POST(req: Request) {
 ### Express.js Middleware
 
 ```typescript
-import { rateLimit } from 'redis-rate-limit';
+import { rateLimit } from '@yaliach/redis-rate-limit';
 import express from 'express';
 
 const app = express();
@@ -262,7 +262,7 @@ app.use(async (req, res, next) => {
 
 ## My Personal Usage
 
-This section demonstrates how I use `redis-rate-limit` in my Next.js application with Better Auth to create modular API routes that support both API key authentication and session-based user authentication.
+This section demonstrates how I use `@yaliach/redis-rate-limit` in my Next.js application with Better Auth to create modular API routes that support both API key authentication and session-based user authentication.
 
 ### Modular Route Pattern
 
@@ -271,7 +271,7 @@ Here's how I structure my API routes to handle both authentication methods:
 ```typescript
 // app/api/v1/users/route.ts
 import { NextResponse } from 'next/server'
-import { rateLimit } from 'redis-rate-limit'
+import { rateLimit } from '@yaliach/redis-rate-limit'
 import { auth } from '@/lib/auth'
 import { checkPermissions } from '@/lib/permissions'
 import { logger } from '@/lib/logger'
@@ -345,7 +345,7 @@ import {
   type RateLimitResult,
   type RateLimitStrategy,
   type RateLimitProfileName,
-} from 'redis-rate-limit';
+} from '@yaliach/redis-rate-limit';
 ```
 
 ## How It Works
