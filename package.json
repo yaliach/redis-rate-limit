@@ -1,7 +1,7 @@
 {
   "name": "redis-rate-limit",
   "version": "1.0.0",
-  "description": "Redis-based rate limiting with sliding window for any Node.js application",
+  "description": "Granular rate limiting with sliding window for any Node.js application.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
@@ -25,9 +25,9 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/yourusername/redis-rate-limit.git"
+    "url": "https://github.com/yaliach/redis-rate-limit.git"
   },
-  "author": "Your Name <your.email@example.com>",
+  "author": "Yali Ach yaliachitov26@gmail.com",
   "license": "MIT",
   "peerDependencies": {
     "redis": "^4.0.0"
