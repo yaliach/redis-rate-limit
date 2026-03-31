@@ -1,0 +1,43 @@
+{
+  "name": "redis-rate-limit",
+  "version": "1.0.0",
+  "description": "Redis-based rate limiting with sliding window for any Node.js application",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "rate-limit",
+    "rate-limiting",
+    "redis",
+    "sliding-window",
+    "throttle",
+    "api",
+    "nodejs",
+    "typescript"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/redis-rate-limit.git"
+  },
+  "author": "Your Name <your.email@example.com>",
+  "license": "MIT",
+  "peerDependencies": {
+    "redis": "^4.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0",
+    "@types/node": "^20.0.0",
+    "redis": "^4.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
