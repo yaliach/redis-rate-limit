@@ -30,7 +30,7 @@
   "author": "Yali Ach yaliachitov26@gmail.com",
   "license": "MIT",
   "peerDependencies": {
-    "redis": "^4.0.0"
+    "redis": "^4.0.0 || ^5.0.0"
   },
   "devDependencies": {
     "typescript": "^5.0.0",
