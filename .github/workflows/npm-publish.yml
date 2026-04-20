@@ -9,10 +9,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
         with:
-          node-version: 20
+          node-version: 25
       - run: npm ci
 
   publish-and-sync:
@@ -22,13 +22,13 @@ jobs:
       contents: write
       id-token: write 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 0 
       
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
-          node-version: 20
+          node-version: 25
 
       - run: npm ci
 
@@ -48,10 +48,15 @@ jobs:
           git push origin HEAD:main
 
       # Publish to npm
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
-          node-version: 20
-          registry-url: https://npmjs.org
+          node-version: 25
+          registry-url: https://registry.npmjs.org
+      
+      - name: Update npm
+        run: npm install -g npm@latest
 
       - name: Publish to npm
-        run: npm publish --provenance
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: "" 
