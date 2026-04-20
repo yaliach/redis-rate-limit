@@ -1,0 +1,55 @@
+name: Node.js Package
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm ci
+      - run: npm test
+
+  publish-and-sync:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 
+      
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          registry-url: https://npmjs.org
+
+      - run: npm ci
+
+      # Extract version from tag and update package.json
+      - name: Update version
+        run: |
+          VERSION=${GITHUB_REF#refs/tags/v}
+          npm version $VERSION --no-git-tag-version
+
+      # Commit and Push the change back to the main branch
+      - name: Commit and push changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@://github.com"
+          git add package.json package-lock.json
+          git commit -m "chore: bump version to ${GITHUB_REF#refs/tags/v} [skip ci]"
+          git push origin HEAD:main
+
+      # Publish to npm
+      - name: Publish to npm
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.npm_token }}
