@@ -29,7 +29,6 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-          registry-url: https://npmjs.org
 
       - run: npm ci
 
@@ -49,5 +48,10 @@ jobs:
           git push origin HEAD:main
 
       # Publish to npm
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          registry-url: https://npmjs.org
+
       - name: Publish to npm
         run: npm publish --provenance
